@@ -1,0 +1,185 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  background: #ffffff;
+  background-size: cover;
+  font-family: "Hind";
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: "Hind";
+  src: url("./webfonts/Hind-Regular.ttf");
+  font-weight: 100;
+  line-height: 1.7;
+}
+
+.whole {
+  width: 74em;
+  max-width: calc(100% - 4em);
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  padding: 6em 4em;
+  text-align: left;
+  color: #000;
+}
+
+.header h1 {
+  font-size: 3em;
+  transition-delay: 0.5s;
+  margin: 0 0 0.25em 0;
+  line-height: 1.2;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+}
+
+.header p {
+  transition-delay: 0.5s;
+  font-size: 1.25em;
+  letter-spacing: -0.025em;
+  font-family: inherit;
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+.header br {
+  display: block !important;
+  content: "";
+  margin: 0.5em;
+}
+
+.header p a {
+  text-decoration: none;
+  border-bottom: dotted 1px;
+  color: inherit;
+}
+
+#nav {
+  display: block;
+  color: #636363;
+  position: absolute;
+  width: 72em;
+  max-width: calc(100% - 6em);
+  padding: 1em;
+  background-color: rgba(222, 222, 222, 0.25);
+  border-top-left-radius: 0.25em;
+  border-top-right-radius: 0.25em;
+  cursor: default;
+  text-align: center;
+  font-weight: 300;
+  margin: 0;
+}
+
+#nav.alt {
+  position: fixed;
+  top: 0;
+  padding: 0.5em 1em;
+  background-color: rgba(238, 238, 238, 0.9);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  z-index: 10000;
+  width: 72em;
+}
+
+#nav.alt ul li {
+  margin: 0 2em;
+}
+
+#nav.alt ul li a {
+  font-size: 0.9em;
+}
+
+#nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#nav ul li {
+  transition: margin 0.2s ease;
+  display: inline-block;
+  margin: 0 2em;
+  padding: 0;
+  vertical-align: middle;
+}
+
+#nav ul li a {
+  transition: font-size 0.2s ease;
+  display: inline-block;
+  height: 2.25em;
+  line-height: 2.25em;
+  padding: 0 1.25em;
+  border: 0;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+#nav ul li a.active {
+  background-color: #ffffff;
+  box-shadow: none;
+}
+
+#nav ul li a:hover {
+  background-color: rgba(222, 222, 222, 0.25);
+}
+
+#nav a:hover {
+  color: #636363;
+}
+
+#nav + .main {
+  padding-top: 4.25em;
+}
+
+.main {
+  display: block;
+  background-color: #f7f7f7;
+  color: #636363;
+  border-radius: 0.25em;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.main section {
+  display: block;
+  padding: 4em 4em 2em 4em;
+}
+
+.major {
+  margin: 0 0 2em 0;
+}
+
+.major h2 {
+  color: #596361;
+  font-size: 2em;
+  font-weight: 300;
+}
+
+text.highcharts-credits {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  #nav ul li {
+    margin: 0 0.2em;
+  }
+
+  #nav ul li a {
+    font-size: 0.8em;
+  }
+
+  #nav.alt ul li {
+    margin: 0 0.5em;
+  }
+
+  #nav.alt ul li a {
+    font-size: 0.9em;
+  }
+}

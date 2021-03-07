@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="assets/index.css" />
+    <script type="module" src="./assets/js/stickyNavBar.js"></script>
+
+    <title>Differential Gene Expression Tools Research</title>
+  </head>
+
+  <body>
+    <div class="whole">
+      <div class="header">
+        <div></div>
+        <div>
+          <h1>Differential Gene Expression Tools Research</h3>
+          <p>Authors: Joseph Bui, Brandon Tsui, Luigi Cheng</p>
+          <p>Project Github Repo: <a href="https://github.com/JosephBui21/RNASeqToolComparison/" target="_blank">https://github.com/JosephBui21/RNASeqToolComparison</a> </p>
+        
+        </div>
+        <div></div>
+        </div>
+
+      <div id="nav">
+        <ul>
+          <li><a href="#abstract">Abstract</a></li>
+          <li><a href="#background">Background</a></li>
+          <li><a href="#dataset">Dataset</a></li>
+          <li><a href="#method">Method</a></li>
+          <li><a href="#result">Results</a></li>
+        </ul>
+      </div>
+
+      <div class="main">
+        <section class="abstract" id="abstract">
+            <div class="content">
+              <header class="major">
+                <h2><b>Abstract</b></h2>
+              </header>
+              <p>
+                RNA-Seq (named as an abbreviation of "RNA sequencing") is a technology-based sequencing technique 
+                which uses next-generation sequencing (NGS) to reveal the presence and quantity of RNA in a biological 
+                sample at a given moment, analyzing the continuously changing cellular transcriptome. Differential 
+                expression analysis takes the normalised read count data and performs statistical analysis to discover
+                quantitative changes in expression levels between experimental groups. As technology progresses by 
+                each year passing, there are now a lot of technological tools available in the Internet that can perform 
+                such differential expression analysis. The purpose of our project is to take a closer look at some of 
+                these tools, and compare their performances to understand which tools are optimal to utilize. 
+                Specifically, the softwares that we are going to focus on are: ABSSeq, voom.limma, PoissonSeq, 
+                DESeq2, NOISeq, ttest  and edgeR. We are going to compare their performances by looking at parameters
+                such as Area Under the Curve (AOC), False Discovery Rate (FDR), Type I error rate, and Sensitivity. <br />
+              </p>
+            </div>
+        </section>
+
+        <section class="background" id="background">
+          <div class="content">
+            <header class="major">
+              <h2><b>Background</b></h2>
+            </header>
+            <p>
+              In genetic research, the understanding of transcriptomes – the set of all RNA transcripts – 
+              is crucial for researchers to gain insight into the development of diseases, conditions, 
+              or disorders with known genetic etiologies. The goal of the transcriptomic research is to 
+              catalogue all species of transcript, including mRNAs, non-coding RNAs & small RNAs and more 
+              importantly, to quantify the changing expression levels of each transcript during development 
+              and under various environmental and disease conditions. Identifying genes that are differentially 
+              expressed is extremely helpful in determining which biological mechanisms could have an effect 
+              on a disease or disorder. In the past, researchers primarily used hybridization approaches, such 
+              as microarrays, to deduce and quantify these transcriptomes9. Hybridization involves incubating 
+              labelled cDNA to microarrays, which while being relatively high throughput and inexpensive, also 
+              have limitations such as reliance upon existing knowledge about genome sequence, and limited 
+              dynamic range of detection9. Traditionally, researchers used to perform microarrays to analyze genes. 
+              However, RNA-Sequencing has recently grown in popularity due to their ability to provide much 
+              more precise and accurate measurements, and their potential to cover a wider range of transcripts 
+              that haven’t been correlated to an existing genome, while also having extremely low background signal 
+              all at a lower cost compared with microarrays. 
+
+              <br />
+              
+              With the emergence of RNA-sequencing data, countless softwares have been developed to extract information 
+              from such data. To process the RNA-sequencing data, a researcher needs to first quality check the reads 
+              produced by RNA-seq. For some instances, it is necessary to clean the RNA-seq reads from contamination from 
+              adapters during preprocessing. Finally, the researcher analyzes the differentially expressed genes among 
+              all the samples. For each step of this process, there are corresponding tools that can be used to help 
+              the researchers. In every genetic study using RNA-seq data, researchers must both determine which tools 
+              to use and how to precisely use them as there is no single standardized pipeline for differential 
+              expression due to the diversity in types of RNA data. Here, we hope to investigate which software is the most 
+              efficient and yield the best results by comparing specific tools on both a synthetic dataset and a real life dataset.
+              Because quality control and cleaning of RNA-seq data can only be assessed by computational efficiency and
+              costs, we would want to focus the core of this project on comparing gene differential expression tools. 
+              Different tools utilize distinct methods to normalize and calculate the abundance of each gene expressed 
+              in each sample, so we would like to test these tools against each other to study which would produce the 
+              best results. Overall we include for analysis the following tools: ABSSeq, voom.limma, PoissonSeq, DESeq2, NOISeq, ttest 
+              and edgeR, while evaluating their performance on Area Under the Curve (AOC), False Discovery Rate (FDR), 
+              Type I error rate, and Sensitivity. The importance of this project is to possibly help future researchers
+              by providing them information about which tools they could utilize for their RNA-seq research for the best 
+              results based on the composition of the data and which accuracy metrics need to be controlled.
+              <br />
+            </p>
+          </div>
+      </section>
+
+
+      <section class="dataset" id="dataset">
+        <div class="content">
+          <header class="major">
+            <h2><b>Dataset</b></h2>
+          </header>
+          <p>
+            Real life RNA-seq data are hard to interpret and genes determined to be differentially expressed are determined only within a degree of certainty in a normal experiment, we decided to test the tools using a simulated post-alignment dataset, in which we can control variables such as proportion of genes differentially expressed, number of up and down-regulated genes, outliers, and samples per condition. Because it is a synthetic dataset, we can know with full certainty which genes are truly differentially expressed and therefore we can actually calculate accuracy metrics against the truth, which we would not be able to know in a real experiment. We chose to create several datasets with various combinations of number of differentially expressed genes and samples per condition in order to capture the different types of real life genetic data. This will allow us to test, for example, if certain tools work better when there are many differentially expressed genes as opposed to few.
+            <br />
+          </p>
+          <img src="images/figure1.jpeg" style="width:100%;height:80%;"/></a>
+          <p style='font-size:13px'><i>Figure 1. The table above shows the different generated  
+            The ‘B’ represents the baseline, ‘P’ represents the Poisson, 
+            ‘S’ represents the single outlier, and ‘R’ represents the random outlier. 
+            In each simulated study, there are different numbers of differentially expressed 
+            genes between the 2 conditions which will be explained more thoroughly below. </i></p>
+
+          <p>
+            In all simulated studies, there are 5 samples between 2 conditions, denoted by S1 and S2. 
+            The simulated studies (left column) have superscripts which represents the number of upregulated DE genes 
+             and the subscript represents the number of downregulated DE genes in the second condition (S2). 
+             The baseline, single outlier, and random outlier have counts generated from the Negative 
+             Binomial distribution whereas Poisson is generated from the Poisson distribution. 
+             The ‘single’ outlier fraction is the fraction of genes in a selected single sample 
+             where the corresponding count is multiplied with a factor between 5 and 10 — ‘random’ 
+             outlier fraction is similar but with a randomly selected sample. 
+            <br />
+          </p>
+
+        </div>
+      </section>
+
+      <section class="method" id="method">
+        <div class="content">
+          <header class="major">
+            <h2><b>Methods</b></h2>
+          </header>
+
+          <h3><i>Creating the Synthetic Data</i></h3>
+          <p>
+            We used compcodeR to investigate the different tools by first creating the synthetic data 
+            using the built-in function, <i>generateSyntheticData</i>. For the distinct 11 simulated datasets, 
+            we specified the parameters: <i>`n.vars`</i> = 12,500, <i>`samples.per.cond`</i> = 5, 
+            <i>`dispersions`</i> = # |{g; 𝜙g = 0}| column in Figure 1. To produce the fraction of differentially 
+            expressed genes that is upregulated in S2 compared to S1, <i>`fraction.upregulated`</i> = the ratios 
+            shown in Figure 1 (i.e. 0.5 for B625625). For the single outlier fraction datasets, 
+            <i>`single.outlier.high.prob`</i> = 0.05 (fraction of single outlier has unusually high counts) 
+            and <i>`single.outlier.low.prob`</i> = 0.05 (fraction of single outlier has unusually low counts). 
+            As for the random outlier fraction datasets, <i>`random.outlier.high.prob`</i> = 0.025 (fraction 
+            of random outliers with unusually high counts) and <i>`random.outlier.low.prob`</i> = 0.025 
+            (fraction of random outliers with unusually low counts). 
+            <br />
+          </p>
+
+          <h3><i>Performing Differential Expression</i></h3>
+          <p>
+            For performing tools that were supported by compcodeR, we used the built-in function 
+            called <i>`runDiffExp`</i> where we specify the <i>`result.extent`</i> parameter 
+            as: DESeq2, edgeR, NOISeq, voom.limma, and ttest. However, the last two tools that 
+            we wanted to investigate are not part of compcodeR, ABSSeq and PoissonSeq, both 
+            of which require different parameters that will be explained further below. 
+            <br />
+          </p>
+
+          <p style='font-size:17px'><i>ABSSeq</i></p>
+          <p>This tool performs differential expression analysis of RNAseq data by absolute counts difference between two groups, utilizing Negative binomial distribution and moderating fold-change according to heterogeneity of dispersion across expression level.</p>
+
+          <p style='font-size:17px'><i>voom.limma</i></p>
+          <p>This tool performs differential expression analysis of RNAseq data (comparing two conditions) by applying the voom transformation (from the limma package) followed by differential expression analysis with a t-test. Voom precision weights unlock linear model analysis tools for RNA-seq read counts. Then, limma fits a linear model to the expression data for each gene</p>
+
+          <p style='font-size:17px'><i>PoissonSeq</i></p>
+          <p>This tool estimates the sequencing depths of experiments using a new method based on Poisson goodness-of-fit statistic, and calculates a core statistic on the basis of a Poisson log-linear model, and then estimates the false discovery date using a modified version of the permutation plug-in method.</p>
+
+          <p style='font-size:17px'><i>DESeq2</i></p>
+          <p>This tool performs differential gene expression analysis by estimating the variance-mean dependence in count data using the Negative Binomial Distribution. More specifically, DESeq2 estimates the size factors using the gene counts of the samples, then estimation of dispersion, and lastly performs Negative Binomial Distribution GLM fitting and Wald significance tests. For our purpose, we created a parametric type of fitting of the dispersions to the mean intensity and utilized the Wald test to perform differential gene analysis. </p>
+
+          <p style='font-size:17px'><i>NOISeq</i></p>
+          <p>This tool performs differential gene expression analysis of RNA-seq expression data between two conditions without parametric assumptions. NOISeq models the noise distribution of count changes by contrasting fold-change differences and absolute expression differences for all the features in samples within the same condition. NOISeq has 3 main functions: performing quality control of count data, normalization and filter low-counts, and performing differential expression analysis. </p>
+
+          <p style='font-size:17px'><i>ttest</i></p>
+          <p>This tool uses the edgeR package to perform differential expression analysis of RNAseq data (comparing two conditions) using a t-test, applied to the normalized counts. </p>
+
+          <p style='font-size:17px'><i>edgeR.exact</i></p>
+          <p>This tool performs differential gene expression analysis of RNA-seq expression profiles with biological replication. This R package contains multiple statistical methodology based on the Negative Binomial Distributions, including empirical Bayes estimation, exact tests, generalized linear models, and quasi-likelihood tests. For our investigation, we implemented genewise exact tests for differences in the means between the 2 conditions of negative-binomially distributed counts</p>
+        </div>
+      </section>
+
+      <section class="result" id="result">
+        <div class="content">
+          <header class="major">
+            <h2><b>Results</b></h2>
+          </header>
+
+          <h3>
+            Exploratory Analysis of the Tools
+          </h3>
+
+          <img src="images/figure2.jpeg" style="width:70%;height:70%;align-self: center;"/></a>
+          <p style='font-size:13px'><i>Figure 2.  The figure above shows the runtime taken by each tool to process each individual synthetic dataset. </i></p>
+
+
+          <p>
+            The results produced from each tool on the 11 synthetic datasets were stored in `<synthetic_dataset_num><tool>.rds`, where synthetic_dataset_num was either `baseline0_0`, `poisson625_625`, etc. and <tool> represented the tool performed on the respective dataset; each file returned a matrix of genes with its p-values and log fold changes. Therefore, we wanted to investigate how the tools did with a basic summary: number of genes that were identified as differentially expressed with a significance level of 0.05, meaning p-values that were less than 0.05. 
+            <br />
+          </p>
+
+          <img src="images/figure3.jpeg" style="width:100%;height:70%;align-self: center;"/></a>
+          <p style='font-size:13px'><i>Figure 3 The figure above was produced from counting all the genes that had a p-value less than 0.05 significance level. In the “Synthetic Data” column, the different synthetic datasets are represented as the same format as Figure 1 (from above) where the corresponding numbers represent the number of genes differentially expressed in condition 1 vs condition 2. The values under each column, representing a software, are the counts of genes that are significantly expressed (< 0.05). Overall, it can be seen that most tools do not perfectly identify the number of truly differentially expressed genes. </i></p>
+
+          <p>
+            First, it can be seen that ABSSeq identified 0 genes as significantly expressed in almost all synthetic datasets except for the poisson synthetic dataset. This finding should be looked into as these results are peculiar as one would expect more genes to be considered differentially expressed in synthetic data where there are truly differentially expressed genes. Second, for NOISeq, it almost perfectly identifies either 1 or 3 genes that are differentially expressed in the synthetic datasets where 0 genes are differentially expressed. This is unique compared to the other tools, except ABSSeq, where most softwares identify a couple hundred of genes that are differentially expressed when there are 0 truly differentially expressed genes in the synthetic dataset. This is interesting or something we have to investigate further because there should not be a common pattern where all these tools (DESeq2, edgeR, ttest, voom.limma, and PoissonSeq) consider genes as differentially expressed when there are 0 truly expressed genes. For the synthetic datasets which had 1,250 truly differentially expressed genes, it seems that edgeR was overestimating the true number by about 20 and ttest was underestimating the true number by about 20 as well. Overall, this is a very rough look at the initial results as this statistic looks merely at the total counts which ignores whether the genes are even correctly labeled at all. We have some preliminary tables with such statistics as FDR and AUC that have not yet scaled to work for all datasets due to their differences and are not ready to be shared yet.
+            <br />
+          </p>
+
+          <h2>Accuracy Results:</h2>
+          <div style="display: flex;">
+            <img src="images/accuracy_baseline625_625.png" style="width:50%;height:50%;"/></a>
+            <img src="images/accuracy_baseline1250_0.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+          <div style="display: flex;">
+            <img src="images/accuracy_baseline2000_2000.png" style="width:50%;height:50%;"/></a>
+            <img src="images/accuracy_baseline4000_0.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+          <div style="display: flex;">
+            <img src="images/accuracy_poisson625_625.png" style="width:50%;height:50%;"/></a>
+            <img src="images/accuracy_random625_625.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+
+          <h2>Area Under Curve Results:</h2>
+          <div style="display: flex;">
+            <img src="images/auc_baseline625_625.png" style="width:50%;height:50%;"/></a>
+            <img src="images/auc_baseline1250_0.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+          <div style="display: flex;">
+            <img src="images/auc_baseline2000_2000.png" style="width:50%;height:50%;"/></a>
+            <img src="images/auc_baseline4000_0.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+          <div style="display: flex;">
+            <img src="images/auc_poisson625_625.png" style="width:50%;height:50%;"/></a>
+            <img src="images/auc_random625_625.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+
+          <h2>False Discovery Rate Results:</h2>
+          <div style="display: flex;">
+            <img src="images/fdr_baseline625_625.png" style="width:50%;height:50%;"/></a>
+            <img src="images/fdr_baseline1250_0.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+          <div style="display: flex;">
+            <img src="images/fdr_baseline2000_2000.png" style="width:50%;height:50%;"/></a>
+            <img src="images/fdr_baseline4000_0.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+          <div style="display: flex;">
+            <img src="images/fdr_poisson625_625.png" style="width:50%;height:50%;"/></a>
+            <img src="images/fdr_random625_625.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+
+          <h2>False Positive Rate Results:</h2>
+          <div style="display: flex;">
+            <img src="images/fpr_baseline0_0.png" style="width:50%;height:50%;"/></a>
+            <img src="images/fpr_poisson0_0.png" style="width:50%;height:50%;"/></a>
+          </div>
+
+          <div style="display: flex;">
+            <img src="images/fpr_random0_0.png" style="width:50%;height:50%;"/></a>
+            <img src="images/fpr_single0_0.png" style="width:50%;height:50%;"/></a>
+          </div>   
+        </div>
+      </section>
+      </div>
+    </body>
+  </html>
+  
