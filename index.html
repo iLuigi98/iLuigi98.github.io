@@ -30,6 +30,7 @@
           <li><a href="#dataset">Dataset</a></li>
           <li><a href="#method">Method</a></li>
           <li><a href="#result">Results</a></li>
+          <li><a href="#conclusion">Conclusion</a></li>
         </ul>
       </div>
 
@@ -250,12 +251,15 @@
             ABSSeq has a high false discovery rate which means that it doesn’t perform nearly as well as the other tools in terms of predicting whether a gene is truly differentially expressed. Furthermore, almost all tools portray low variances, except for ABSSeq which demonstrates how ABSSeq may not be performing analysis correctly most of the time because of how spread out the data points are from the mean.
             Similar to ABSSeq, PoissonSeq doesn’t perform as well as the other tools (DESeq2, edgeR, voom.limma, & ttest) as it received False Discovery Rates higher than 0.5, but still performed better than ABSSeq. However, there is a unique trend here where the FDR would decrease as the number of samples increase for PoissonSeq.
           </p>
+        </div>
+      </section>
 
-          <br />
-          <br />
-          <br />
 
-          <h2><b>Conclusion</b></h2>
+      <section class="conclusion" id="conclusion">
+        <div class="content">
+          <header class="major">
+            <h2><b>Conclusion</b></h2>
+          </header>
           <p>
             As expected, there was no one software that performed better than the others in all of the metrics we measured further proving that researchers need to be particular when choosing what tool to use in a given study. As more general, all-encompassing statistics, the results on AUC and accuracy show that DESeq2 and EdgeR are solid choices for most studies although if runtime is a major factor, as can be the case as RNA extraction becomes cheaper and more available, EdgeR may be the better choice since on average it took many factors less time than DESeq2. Other tools such as voom.limma and ttest performed particularly well on datasets generated with the poisson distribution instead of the negative binomial distribution which is used to simulate variation in the input data. This could indicate that it may be better to use these tools when the data is known to have more of this similar variability. Finally, ABSSeq, which was by far the worst in almost all other circumstances, proved to be the best in terms of False Positive rate in the datasets with zero differentially expressed genes showing that it could be more valuable when the expected number of differentially expressed genes in a study is low since it is more selective when differentiating between genes leading to a lower amount of false positives.
             <br />
@@ -265,6 +269,52 @@
             <br />
             <br />
             Again, for a more comprehensive understanding of our findings, we suggest to take a look at our research report, where we have more detailed specifications of our methods and conclusions.
+          </p>
+        </div>
+      </section>
+
+      <section class="conclusion" id="conclusion">
+        <div class="content">
+          <header class="major">
+            <h2><b>References:</b></h2>
+          </header>
+          <p>
+            <a href="https://bioconductor.org/packages/release/bioc/html/ABSSeq.html" target="_blank">ABSSeq</a> 
+          </p>
+          
+          <p>
+            <a href="https://rdrr.io/bioc/limma/src/R/voom.R" target="_blank">voom.limma</a> 
+          </p>
+
+          <p>
+            <a href="https://cran.r-project.org/web/packages/PoissonSeq/index.html" target="_blank">PoissonSeq</a> 
+          </p>
+
+          <p>
+            <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html" target="_blank">DESeq2</a> 
+          </p>
+
+          <p>
+            <a href="https://bioconductor.org/packages/release/bioc/html/NOISeq.html" target="_blank">NOISeq</a> 
+          </p>
+
+          <p>
+            <a href="ttps://bioconductor.org/packages/release/bioc/html/edgeR.html" target="_blank">edgeR</a> 
+          </p>
+
+          <p>
+            <a href="https://rdrr.io/bioc/edgeR/man/exactTest.html" target="_blank">excact Test</a> 
+          </p>
+
+          <p>
+            <a href="https://www.nature.com/articles/nrg2484" target="_blank">RNA-Sequencing</a> 
+          </p>
+          
+          <p>
+            <a href="https://bioconductor.org/packages/release/bioc/html/compcodeR.html" target="_blank">compcodeR</a> 
+          </p>
+          <p>
+            <a href="https://www.rdocumentation.org/packages/compcodeR/versions/1.8.2/topics/generateSyntheticData" target="_blank">generateSyntheticData</a> 
           </p>
         </div>
       </section>
