@@ -121,7 +121,7 @@
             genes between the 2 conditions which will be explained more thoroughly below. </i></p>
 
           <p>
-            In all simulated studies, there are 2,5 and 10 samples between 2 conditions, denoted by S1 and S2. 
+            In all simulated studies, there are 2, 5 and 10 samples between 2 conditions, denoted by S1 and S2. 
             The simulated studies (left column) have superscripts which represents the number of upregulated DE genes 
              and the subscript represents the number of downregulated DE genes in the second condition (S2). 
              The baseline, single outlier, and random outlier have counts generated from the Negative 
@@ -245,6 +245,15 @@
             DESeq2, edgeR, voom.limma, and ttest, all rank around 0.5 for false discovery rate with small variance which means that these tools are good at predicting whether a gene is differentially expressed.
             ABSSeq has a high false discovery rate which means that it doesn’t perform nearly as well as the other tools in terms of predicting whether a gene is truly differentially expressed. Furthermore, almost all tools portray low variances, except for ABSSeq which demonstrates how ABSSeq may not be performing analysis correctly most of the time because of how spread out the data points are from the mean.
             Similar to ABSSeq, PoissonSeq doesn’t perform as well as the other tools (DESeq2, edgeR, voom.limma, & ttest) as it received False Discovery Rates higher than 0.5, but still performed better than ABSSeq. However, there is a unique trend here where the FDR would decrease as the number of samples increase for PoissonSeq.
+          </p>
+
+          <br />
+          <br />
+          <br />
+
+          <h2><b>Conclusion</b></h2>
+          <p>
+            As expected, there was no one software that performed better than the others in all of the metrics we measured further proving that researchers need to be particular when choosing what tool to use in a given study. As more general, all-encompassing statistics, the results on AUC and accuracy show that DESeq2 and EdgeR are solid choices for most studies although if runtime is a major factor, as can be the case as RNA extraction becomes cheaper and more available, EdgeR may be the better choice since on average it took many factors less time than DESeq2. Other tools such as voom.limma and ttest performed particularly well on datasets generated with the poisson distribution instead of the negative binomial distribution which is used to simulate variation in the input data. This could indicate that it may be better to use these tools when the data is known to have more of this similar variability. Finally, ABSSeq, which was by far the worst in almost all other circumstances, proved to be the best in terms of False Positive rate in the datasets with zero differentially expressed genes showing that it could be more valuable when the expected number of differentially expressed genes in a study is low since it is mo
           </p>
         </div>
       </section>
