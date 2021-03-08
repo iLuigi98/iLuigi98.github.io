@@ -161,9 +161,12 @@
           <p>
             For performing tools that were supported by compcodeR, we used the built-in function 
             called <i>`runDiffExp`</i> where we specify the <i>`result.extent`</i> parameter 
-            as: DESeq2, edgeR, NOISeq, voom.limma, and ttest. However, the last two tools that 
-            we wanted to investigate are not part of compcodeR, ABSSeq and PoissonSeq, both 
-            of which require different parameters that will be explained further below. 
+            as: DESeq2, edgeR, NOISeq, voom.limma, and ttest. ABSSeq and PoissonSeq, which are 
+            not as commonly used, were not supported by compcodeR and needed to be run separately. 
+            For both tools, the count matrix was extracted from the compcodeR object for each 
+            dataset and labeled to distinguish between conditions based on the number of samples 
+            per condition. Both were then run using default parameters and labeled 1 or 0 based 
+            on a cutoff value of 0.05 for adjusted p-value.
             <br />
           </p>
 
