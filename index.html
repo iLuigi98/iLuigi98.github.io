@@ -121,7 +121,7 @@
             genes between the 2 conditions which will be explained more thoroughly below. </i></p>
 
           <p>
-            In all simulated studies, there are 5 samples between 2 conditions, denoted by S1 and S2. 
+            In all simulated studies, there are 2,5 and 10 samples between 2 conditions, denoted by S1 and S2. 
             The simulated studies (left column) have superscripts which represents the number of upregulated DE genes 
              and the subscript represents the number of downregulated DE genes in the second condition (S2). 
              The baseline, single outlier, and random outlier have counts generated from the Negative 
@@ -195,89 +195,57 @@
           <header class="major">
             <h2><b>Results</b></h2>
           </header>
-
-          <h3>
-            Exploratory Analysis of the Tools
-          </h3>
-
-          <img src="images/figure2.jpeg" style="width:70%;height:70%;align-self: center;"/></a>
-          <p style='font-size:13px'><i>Figure 2.  The figure above shows the runtime taken by each tool to process each individual synthetic dataset. </i></p>
-
-
           <p>
-            The results produced from each tool on the 11 synthetic datasets were stored in `<synthetic_dataset_num><tool>.rds`, where synthetic_dataset_num was either `baseline0_0`, `poisson625_625`, etc. and <tool> represented the tool performed on the respective dataset; each file returned a matrix of genes with its p-values and log fold changes. Therefore, we wanted to investigate how the tools did with a basic summary: number of genes that were identified as differentially expressed with a significance level of 0.05, meaning p-values that were less than 0.05. 
-            <br />
+            For the purpose of a cleaner representation of our research, we chose not to dive too deep in the explanation on this visual represetation. 
+            For a more comprehensive analysis of our research, we suggest to take a look at our research report, where we dive in and look at 
+            each different dataset. There, we identify the effects from having more or less upregulated and low regulated genes, and how outliers affect the results.
+             We also looked at how a Poisson distributed dataset would perform using the different datasets.
+
+             <br />
+
+             For the purpose of this visual representation, we selected some of the graphs that were outputted from our pipeline.
+             Most of researchers are looking for a good Area Under the ROC Curve statistic. We chose to also include Accuracy and FDR, as they also 
+             are important in different areas of studies as well.
           </p>
 
-          <img src="images/figure3.jpeg" style="width:100%;height:70%;align-self: center;"/></a>
-          <p style='font-size:13px'><i>Figure 3 The figure above was produced from counting all the genes that had a p-value less than 0.05 significance level. In the “Synthetic Data” column, the different synthetic datasets are represented as the same format as Figure 1 (from above) where the corresponding numbers represent the number of genes differentially expressed in condition 1 vs condition 2. The values under each column, representing a software, are the counts of genes that are significantly expressed (< 0.05). Overall, it can be seen that most tools do not perfectly identify the number of truly differentially expressed genes. </i></p>
+          <h2>Area Under the ROC Curve</h2>
+          <div style="display: flex; align-self: center;">
+            <img src="images/auc_plot.png" style="width:90%;height:90%;"/></a>
+          </div>
 
           <p>
-            First, it can be seen that ABSSeq identified 0 genes as significantly expressed in almost all synthetic datasets except for the poisson synthetic dataset. This finding should be looked into as these results are peculiar as one would expect more genes to be considered differentially expressed in synthetic data where there are truly differentially expressed genes. Second, for NOISeq, it almost perfectly identifies either 1 or 3 genes that are differentially expressed in the synthetic datasets where 0 genes are differentially expressed. This is unique compared to the other tools, except ABSSeq, where most softwares identify a couple hundred of genes that are differentially expressed when there are 0 truly differentially expressed genes in the synthetic dataset. This is interesting or something we have to investigate further because there should not be a common pattern where all these tools (DESeq2, edgeR, ttest, voom.limma, and PoissonSeq) consider genes as differentially expressed when there are 0 truly expressed genes. For the synthetic datasets which had 1,250 truly differentially expressed genes, it seems that edgeR was overestimating the true number by about 20 and ttest was underestimating the true number by about 20 as well. Overall, this is a very rough look at the initial results as this statistic looks merely at the total counts which ignores whether the genes are even correctly labeled at all. We have some preliminary tables with such statistics as FDR and AUC that have not yet scaled to work for all datasets due to their differences and are not ready to be shared yet.
+            The ROC curve is a popular graphical tool for comparing the performance 
+            of multiple classifiers. The name “ROC” is an acronym for receiver operating characteristics, 
+            which comes from communications theory. The overall performance of a classifier is given by the area under the (ROC) curve (AUC). So the larger the AUC the better the classifier.
             <br />
+
+            We can see that generally, with the increasing of samples, the performances of all the tools increase for the AUC metric. 
+            This is intuitively predictable, as we get better results if we work with more data. We could observe that DESeq2, edgeR.exact, voom.limma, 
+            ttest and PoissonSeq have fairly similar AUC results, having a difference that maxes out at 0.1 depending of the dataset being analyzed.
           </p>
 
-          <h2>Accuracy Results:</h2>
+          <h2>Accuracy</h2>
           <div style="display: flex;">
-            <img src="images/accuracy_baseline625_625.png" style="width:50%;height:50%;"/></a>
-            <img src="images/accuracy_baseline1250_0.png" style="width:50%;height:50%;"/></a>
+            <img src="images/accuracy_plot.png" style="width:90%;height:90%;"/></a>
+          </div>
+          <p>
+            Accuracy refers to how closely the measured value of a quantity corresponds to its “true” value.
+            <br />
+            Just like AUC, we can see that across all graphs, it can be observed that as sample size increases, so does the accuracy.
+          </p>
+          
+          <h2>False Discovery Rate</h2>
+          <div style="display: flex;">
+            <img src="images/fdr_plot.png" style="width:90%;height:90%;"/></a>
           </div>
 
-          <div style="display: flex;">
-            <img src="images/accuracy_baseline2000_2000.png" style="width:50%;height:50%;"/></a>
-            <img src="images/accuracy_baseline4000_0.png" style="width:50%;height:50%;"/></a>
-          </div>
-
-          <div style="display: flex;">
-            <img src="images/accuracy_poisson625_625.png" style="width:50%;height:50%;"/></a>
-            <img src="images/accuracy_random625_625.png" style="width:50%;height:50%;"/></a>
-          </div>
-
-
-          <h2>Area Under Curve Results:</h2>
-          <div style="display: flex;">
-            <img src="images/auc_baseline625_625.png" style="width:50%;height:50%;"/></a>
-            <img src="images/auc_baseline1250_0.png" style="width:50%;height:50%;"/></a>
-          </div>
-
-          <div style="display: flex;">
-            <img src="images/auc_baseline2000_2000.png" style="width:50%;height:50%;"/></a>
-            <img src="images/auc_baseline4000_0.png" style="width:50%;height:50%;"/></a>
-          </div>
-
-          <div style="display: flex;">
-            <img src="images/auc_poisson625_625.png" style="width:50%;height:50%;"/></a>
-            <img src="images/auc_random625_625.png" style="width:50%;height:50%;"/></a>
-          </div>
-
-
-          <h2>False Discovery Rate Results:</h2>
-          <div style="display: flex;">
-            <img src="images/fdr_baseline625_625.png" style="width:50%;height:50%;"/></a>
-            <img src="images/fdr_baseline1250_0.png" style="width:50%;height:50%;"/></a>
-          </div>
-
-          <div style="display: flex;">
-            <img src="images/fdr_baseline2000_2000.png" style="width:50%;height:50%;"/></a>
-            <img src="images/fdr_baseline4000_0.png" style="width:50%;height:50%;"/></a>
-          </div>
-
-          <div style="display: flex;">
-            <img src="images/fdr_poisson625_625.png" style="width:50%;height:50%;"/></a>
-            <img src="images/fdr_random625_625.png" style="width:50%;height:50%;"/></a>
-          </div>
-
-
-          <h2>False Positive Rate Results:</h2>
-          <div style="display: flex;">
-            <img src="images/fpr_baseline0_0.png" style="width:50%;height:50%;"/></a>
-            <img src="images/fpr_poisson0_0.png" style="width:50%;height:50%;"/></a>
-          </div>
-
-          <div style="display: flex;">
-            <img src="images/fpr_random0_0.png" style="width:50%;height:50%;"/></a>
-            <img src="images/fpr_single0_0.png" style="width:50%;height:50%;"/></a>
-          </div>   
+          <p>
+            False discovery rate refers to the proportion of significance tests that reject a null hypothesis when it is in fact true
+            <br />
+            DESeq2, edgeR, voom.limma, and ttest, all rank around 0.5 for false discovery rate with small variance which means that these tools are good at predicting whether a gene is differentially expressed.
+            ABSSeq has a high false discovery rate which means that it doesn’t perform nearly as well as the other tools in terms of predicting whether a gene is truly differentially expressed. Furthermore, almost all tools portray low variances, except for ABSSeq which demonstrates how ABSSeq may not be performing analysis correctly most of the time because of how spread out the data points are from the mean.
+            Similar to ABSSeq, PoissonSeq doesn’t perform as well as the other tools (DESeq2, edgeR, voom.limma, & ttest) as it received False Discovery Rates higher than 0.5, but still performed better than ABSSeq. However, there is a unique trend here where the FDR would decrease as the number of samples increase for PoissonSeq.
+          </p>
         </div>
       </section>
       </div>
